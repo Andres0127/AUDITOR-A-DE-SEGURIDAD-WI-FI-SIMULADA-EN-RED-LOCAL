@@ -1,4 +1,3 @@
-
 # UNIVERSIDAD DISTRITAL FRANCISCO JOSÉ DE CALDAS
 
 ## AUDITORÍA DE SEGURIDAD WI-FI SIMULADA EN RED LOCAL
@@ -44,8 +43,8 @@ Se creó una estructura organizada de carpetas en el sistema Kali Linux para alm
 ```bash
 mkdir -p ProyectoWiFiLocal/{configuraciones,capturas,evidencias}
 ```
-
-> *Figura 1. Imagen de la terminal mostrando la estructura de carpetas con el comando tree.*
+> ![Figura 1](./Capturas/figura1.png)
+> *Figura 1. Imagen de la terminal mostrando la estructura de carpetas con el comando tree.*  
 
 ---
 
@@ -67,8 +66,8 @@ channel=1
 auth_algs=1
 ignore_broadcast_ssid=0
 ```
-
-> *Figura 2. Imagen del archivo hostapd_open.conf abierto en terminal o editor nano.*
+> ![Figura 2](./Capturas/figura2.png)
+> *Figura 2. Imagen del archivo hostapd_open.conf abierto en terminal o editor nano.*  
 
 Este archivo simula una red inalámbrica abierta, llamada “RedLocal_Open”, sin mecanismos de autenticación ni cifrado.
 
@@ -90,9 +89,10 @@ sudo tcpdump -i eth0 -w capturas/open_traffic.pcap
 ping -c 4 8.8.8.8
 curl http://neverssl.com >/dev/null
 ```
-
+> ![Figura 3](./Capturas/figura3.png)  
 > *Figura 3. Imagen de la terminal con tcpdump en ejecución mostrando paquetes capturados.*  
-> *Figura 4. Imagen de Wireshark abierta con open_traffic.pcap, mostrando paquetes ICMP y tráfico HTTP.*
+> ![Figura 4](./Capturas/figura4.png)
+> *Figura 4. Imagen de Wireshark abierta con open_traffic.pcap, mostrando paquetes ICMP y tráfico HTTP.*  
 
 ---
 
@@ -117,8 +117,8 @@ default via 192.168.1.1 dev eth0 proto dhcp src 192.168.1.8 metric 100
 ```bash
 sudo nmap -sS -Pn 192.168.1.1 -oN capturas/scan_router.txt
 ```
-
-> *Figura 5. Imagen de la terminal mostrando el resultado del escaneo Nmap, con listado de puertos abiertos.*
+> ![Figura 5](./Capturas/figura5.png)
+> *Figura 5. Imagen de la terminal mostrando el resultado del escaneo Nmap, con listado de puertos abiertos.*  
 
 ---
 
@@ -138,12 +138,13 @@ wpa_passphrase=prueba1234
 wpa_key_mgmt=WPA-PSK
 rsn_pairwise=CCMP
 ```
-
-> *Figura 6. Imagen del archivo hostapd_wpa2.conf en el editor.*
+> ![Figura 6](./Capturas/figura6.png)
+> *Figura 6. Imagen del archivo hostapd_wpa2.conf en el editor.*  
 
 Dado que no se pudo capturar un handshake real, se analizó un archivo de ejemplo oficial (`handshake_demo.cap`) descargado de una fuente confiable. Se utilizó Wireshark con el filtro `eapol` para observar las 4 tramas del 4-way handshake.
 
-> *Figura 7. Imagen de Wireshark con el filtro “eapol” aplicado, mostrando las 4 tramas del handshake.*
+> ![Figura 7](./Capturas/figura7.png)
+> *Figura 7. Imagen de Wireshark con el filtro “eapol” aplicado, mostrando las 4 tramas del handshake.*  
 
 Este análisis demuestra cómo un atacante podría capturar este intercambio y realizar un ataque offline con herramientas como `aircrack-ng`, usando diccionarios de contraseñas.
 
